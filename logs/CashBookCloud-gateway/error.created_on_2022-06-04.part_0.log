@@ -1,0 +1,202 @@
+2022-06-04 19:14:01 | [1;31mERROR[0;39m | [1;33mmain[0;39m | [1;32mcom.alibaba.cloud.nacos.client.NacosPropertySourceBuilder[0;39m | parse data from Nacos error,dataId:cashbook-gateway.yml,data:spring:
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 100000
+        response-timeout: 20s
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true  #¿ªÆô´Ó×¢²áÖÐÐÄ¶¯Ì¬´´½¨Â·ÓÉµÄ¹¦ÄÜ£¬ÀûÓÃÎ¢·þÎñÃû½øÐÐÂ·ÓÉ
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            #ÕâÀïÓÐ¸öallowCredentials: trueÕâ¸ö¶«Î÷ÊÇÉèÖÃÔÊÐí·ÃÎÊÐ¯´øcookieµÄ£¬ÕâµãÒ»¶¨ÒªºÍÇ°¶Ë¶ÔÓ¦£¡
+            allowCredentials: true
+            #¿ÉÒÔÌîÐ´¶à¸öÓòÃûÓÃ","¸ô¿ª ÀýÈç£º""  "*"´ú±íÔÊÐíËùÓÐ
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      routes:
+        - id: cashbook-bill
+          uri: lb://cashbook-bill-service
+          #          order: 8001
+          predicates:
+            - Path=/bill/**
+        - id: cashbook-cat
+          uri: lb://cashbook-cat-service
+          #          order: 8001
+          predicates:
+            - Path=/cat/**
+        - id: cashbook-billlist
+          uri: lb://cashbook-billlist-service
+          #          order: 8001
+          predicates:
+            - Path=/billlist/**
+        - id: cashbook-menu
+          uri: lb://cashbook-menu-service
+          #          order: 8001
+          predicates:
+            - Path=/menus/**
+        - id: cashbook-manager
+          uri: lb://cashbook-manager-service
+          #          order: 8001
+          predicates:
+            - Path=/manager/**
+        - id: cashbook-role
+          uri: lb://cashbook-role-service
+          #          order: 8001
+          predicates:
+            - Path=/role/**
+        - id: cashbook-upload
+          uri: lb://cashbook-upload-service
+          #          order: 8001
+          predicates:
+            - Path=/upload/**
+        - id: cashbook-user
+          uri: lb://cashbook-user-service
+          #          order: 8001
+          predicates:
+            - Path=/user/**
+        - id: cashbook-captcha
+          uri: lb://cashbook-captcha-service
+          #          order: 8001
+          predicates:
+            - Path=/captcha/**
+        - id: cashbook-user
+          uri: lb://cashbook-user-service
+          #          order: 8001
+          predicates:
+            - Path=/user/**
+        - id: cashbook-admin
+          uri: lb://cashbook-admin-service
+          #          order: 8001
+          predicates:
+            - Path=/admin/**
+        - id: cashbook-permission
+          uri: lb://cashbook-permission-service
+          #          order: 8001
+          predicates:
+            - Path=/permission/**
+        - id: cashbook-users
+          uri: lb://cashbook-users-service
+          #          order: 8001
+          predicates:
+            - Path=/users/**
+  #          filters:
+  #            - SwaggerHeaderFilter
+  #            - StripPrefix=1
+  #          uri: lb://cloud-admin-service
+  #          order: 8001
+  #          predicates:
+  #            - Path=/admin/**
+  #          filters:
+  ##            - SwaggerHeaderFilter
+  #            - StripPrefix=1
+  ##            - name: RequestRateLimiter
+  ##              args:
+  ##                rate-limiter: "#{@sysRedisRateLimiter}"
+  ##                key-resolver: "#{@sysKeyResolver}"
+
+
+
+  redis:
+    host: 106.12.162.221
+    password:
+    port: 6379
+    timeout: 10000
+    database: 0
+
+#
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.cashbookcloud
+  global-config:
+    banner: false
+    db-config:
+      id-type: id_worker
+      field-strategy: not_empty
+      column-underline: true
+      #capital-mode: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    refresh: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging:
+  config: classpath:logback-spring.xml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+swagger:
+  enabled: false
+ratelimiter-config:
+  rateLimitMap:
+    service.cloud-auth.replenishRate: 10
+    service.cloud-auth.burstCapacity: 100
+    service.cloud-admin-service.replenishRate: 20
+    service.cloud-admin-service.burstCapacity: 1000
+,
+org.yaml.snakeyaml.error.YAMLException: java.nio.charset.MalformedInputException: Input length = 1
+	at org.yaml.snakeyaml.reader.StreamReader.update(StreamReader.java:218)
+	at org.yaml.snakeyaml.reader.StreamReader.ensureEnoughData(StreamReader.java:176)
+	at org.yaml.snakeyaml.reader.StreamReader.ensureEnoughData(StreamReader.java:171)
+	at org.yaml.snakeyaml.reader.StreamReader.peek(StreamReader.java:126)
+	at org.yaml.snakeyaml.scanner.ScannerImpl.scanToNextToken(ScannerImpl.java:1177)
+	at org.yaml.snakeyaml.scanner.ScannerImpl.fetchMoreTokens(ScannerImpl.java:287)
+	at org.yaml.snakeyaml.scanner.ScannerImpl.checkToken(ScannerImpl.java:227)
+	at org.yaml.snakeyaml.parser.ParserImpl$ParseImplicitDocumentStart.produce(ParserImpl.java:195)
+	at org.yaml.snakeyaml.parser.ParserImpl.peekEvent(ParserImpl.java:158)
+	at org.yaml.snakeyaml.parser.ParserImpl.checkEvent(ParserImpl.java:148)
+	at org.yaml.snakeyaml.composer.Composer.checkNode(Composer.java:72)
+	at org.yaml.snakeyaml.constructor.BaseConstructor.checkData(BaseConstructor.java:114)
+	at org.yaml.snakeyaml.Yaml$1.hasNext(Yaml.java:543)
+	at org.springframework.beans.factory.config.YamlProcessor.process(YamlProcessor.java:160)
+	at org.springframework.beans.factory.config.YamlProcessor.process(YamlProcessor.java:134)
+	at org.springframework.beans.factory.config.YamlMapFactoryBean.createMap(YamlMapFactoryBean.java:124)
+	at org.springframework.beans.factory.config.YamlMapFactoryBean.getObject(YamlMapFactoryBean.java:104)
+	at com.alibaba.cloud.nacos.parser.NacosDataYamlParser.doParse(NacosDataYamlParser.java:40)
+	at com.alibaba.cloud.nacos.parser.AbstractNacosDataParser.parseNacosData(AbstractNacosDataParser.java:80)
+	at com.alibaba.cloud.nacos.parser.AbstractNacosDataParser.parseNacosData(AbstractNacosDataParser.java:85)
+	at com.alibaba.cloud.nacos.parser.NacosDataParserHandler.parseNacosData(NacosDataParserHandler.java:45)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder.loadNacosData(NacosPropertySourceBuilder.java:98)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder.build(NacosPropertySourceBuilder.java:74)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.loadNacosPropertySource(NacosPropertySourceLocator.java:204)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.loadNacosDataIfPresent(NacosPropertySourceLocator.java:191)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.loadNacosConfiguration(NacosPropertySourceLocator.java:161)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.loadExtConfiguration(NacosPropertySourceLocator.java:129)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.locate(NacosPropertySourceLocator.java:102)
+	at org.springframework.cloud.bootstrap.config.PropertySourceLocator.locateCollection(PropertySourceLocator.java:52)
+	at org.springframework.cloud.bootstrap.config.PropertySourceLocator.locateCollection(PropertySourceLocator.java:47)
+	at org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration.initialize(PropertySourceBootstrapConfiguration.java:97)
+	at org.springframework.boot.SpringApplication.applyInitializers(SpringApplication.java:626)
+	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at com.cashbookcloud.gateway.CloudGatewayApplication.main(CloudGatewayApplication.java:38)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:51)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:52)
+Caused by: java.nio.charset.MalformedInputException: Input length = 1
+	at java.nio.charset.CoderResult.throwException(Unknown Source)
+	at sun.nio.cs.StreamDecoder.implRead(Unknown Source)
+	at sun.nio.cs.StreamDecoder.read(Unknown Source)
+	at java.io.InputStreamReader.read(Unknown Source)
+	at org.yaml.snakeyaml.reader.UnicodeReader.read(UnicodeReader.java:125)
+	at org.yaml.snakeyaml.reader.StreamReader.update(StreamReader.java:183)
+	... 42 common frames omitted

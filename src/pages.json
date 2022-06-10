@@ -1,26 +1,40 @@
 {
-    "pages": [{
+	// "easycom": {
+	//   "autoscan": true, //是否自动扫描组件
+	//   "custom": {
+	// 	"^uni-(.*)": "@/wxcomponents/uni-$1.vue" // 匹配components目录内的vue文件
+	// 	// "^vue-file-(.*)": "packageName/path/to/vue-file-$1.vue" // 匹配node_modules内的vue文件
+	//   }
+	// },
+    "pages": [
+		{
+		    "path": "pages/login/login",
+		    "style": {
+		        "navigationBarTitleText": "蓝鲸记账"
+		    }
+		},
+		{
             "path": "pages/home/index",
             "style": {
-                "navigationBarTitleText": "首页"
+                "navigationBarTitleText": "明细"
             }
         },
         {
-            "path": "pages/horizontal/index",
+            "path": "pages/report/index",
             "style": {
-                "navigationBarTitleText": "横屏"
+                "navigationBarTitleText": "统计报表"
             }
         },
         {
-            "path": "pages/video/index",
+            "path": "pages/add/index",
             "style": {
-                "navigationBarTitleText": "视频"
+                "navigationBarTitleText": "添加"
             }
         },
         {
-            "path": "pages/search/index",
+            "path": "pages/cashbook/index",
             "style": {
-                "navigationBarTitleText": "搜索"
+                "navigationBarTitleText": "账本"
             }
         },
         {
@@ -29,11 +43,48 @@
                 "navigationBarTitleText": "我的"
             }
         }
+        ,{
+            "path" : "pages/cashbook/upd/upd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "账本",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/cashbook/add/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "添加账本",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/upd/upd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "更新账单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/report/cash/cash",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "支出占比概况",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
     "globalStyle": {
         "navigationBarTextStyle": "white",
-        "navigationBarTitleText": "懂你找图",
+        "navigationBarTitleText": "蓝鲸记账",
         "navigationBarBackgroundColor": "#000"
+		// "enablePullDownRefresh": true
     },
     "tabBar": {
         "color": "#8a8a8a",
@@ -43,24 +94,24 @@
         "borderStyle": "black",
         "list": [{
             "pagePath": "pages/home/index",
-            "text": "首页",
-            "iconPath": "./static/icon/_home.png",
-            "selectedIconPath": "./static/icon/home.png"
+            "text": "明细",
+            "iconPath": "./static/icon/_book.png",
+            "selectedIconPath": "./static/icon/book.png"
         }, {
-            "pagePath": "pages/horizontal/index",
-            "text": "横屏",
-            "iconPath": "./static/icon/_img.png",
-            "selectedIconPath": "./static/icon/img.png"
+            "pagePath": "pages/report/index",
+            "text": "报表",
+            "iconPath": "./static/icon/_report.png",
+            "selectedIconPath": "./static/icon/report.png"
         }, {
-            "pagePath": "pages/video/index",
-            "text": "精美视频",
-            "iconPath": "./static/icon/_videocamera.png",
-            "selectedIconPath": "./static/icon/videocamera.png"
+            "pagePath": "pages/add/index",
+            "text": "添加",
+            "iconPath": "./static/icon/_add.png",
+            "selectedIconPath": "./static/icon/add.png"
         }, {
-            "pagePath": "pages/search/index",
-            "text": "搜索",
-            "iconPath": "./static/icon/_search.png",
-            "selectedIconPath": "./static/icon/search.png"
+            "pagePath": "pages/cashbook/index",
+            "text": "账本",
+            "iconPath": "./static/icon/_cashbook.png",
+            "selectedIconPath": "./static/icon/cashbook.png"
         }, {
             "pagePath": "pages/mine/index",
             "text": "我的",
