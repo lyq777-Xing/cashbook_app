@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<!-- 登录页面 -->
+		<!-- 是登录页面 -->
 			<view class="avatarWrapper">
 				<view class="avater">
 					<image class="logo" src="../../static/Logo2.png" mode="widthFix"></image>
