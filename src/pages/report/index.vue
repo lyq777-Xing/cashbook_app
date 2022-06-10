@@ -1,5 +1,6 @@
 <template>
    <view class="container">
+	   <!-- 统计图 -->
 	   <scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
 			<!-- <view class="title">
 			   <text class="text">统计报表</text>
