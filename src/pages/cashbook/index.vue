@@ -1,5 +1,6 @@
  <template>
    <view class="container">
+	   <!-- 账本页面 -->
 	   <view class="addView">
 		   <button class="addBtn" type="primary" size="mini" @tap="add">添加账本</button>
 	   </view>
