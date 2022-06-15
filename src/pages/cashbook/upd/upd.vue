@@ -159,7 +159,7 @@
 						console.log('chooseImage success, temp path is', res.tempFilePaths[0])
 						var imageSrc = res.tempFilePaths[0]
 						uni.uploadFile({
-							url: 'http://localhost:8888/upload/upload',
+							url: 'http://120.48.85.254:8888/upload/upload',
 							filePath: imageSrc,
 							fileType: 'image',
 							name: 'imgFile',
@@ -210,7 +210,7 @@
 			},
 			// async beforeUpload(index, list) {
 			//     uni.uploadFile({
-			//         url: 'http://localhost:8888/upload/upload',
+			//         url: 'http://120.48.85.254:8888/upload/upload',
 			// 		filePath: list[0].url,
 			// 		name: 'imgFile', //后台接收字段名
 			// 	   // formData:{formData},

@@ -20,11 +20,9 @@
 //         })
 //     })
 // }
-
-
-const BASE_URL = 'http://127.0.0.1:8888/'//接口地址
-export const request = (options) => {
-	return new Promise((resolve,reject) => {
+// 120.48.85.254
+const BASE_URL = 'http://localhost:8888/'//接口地址
+export const request = (options) => {	return new Promise((resolve,reject) => {
 		uni.request({
 			url: BASE_URL + options.url,
 			method: options.method || 'GET',

@@ -64,7 +64,7 @@
 		},
 		add(){
 			uni.redirectTo({
-				url:'/pages/cashbook/add/add?'
+				url:'/pages/cashbook/add/add'
 			})
 			console.log("add..." );
 		},

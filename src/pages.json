@@ -10,7 +10,11 @@
 		{
 		    "path": "pages/login/login",
 		    "style": {
-		        "navigationBarTitleText": "蓝鲸记账"
+		        "navigationBarTitleText": "蓝鲸记账",
+				"usingComponents": {
+				    "basic": "plugin://captcha/basic",
+				    "oneclick": "plugin://captcha/oneclick"
+				  }
 		    }
 		},
 		{
@@ -76,6 +80,46 @@
             {
                 "navigationBarTitleText": "支出占比概况",
                 "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/upd/upd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/alipay/alipay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/zhuce/zhuce",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/forget/forget",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"usingComponents": {
+				    "basic": "plugin://captcha/basic",
+				    "oneclick": "plugin://captcha/oneclick"
+				  }
             }
             
         }

@@ -185,12 +185,10 @@
 								</view>
 							</form>
 						</view>
-					</view>
+					  </view>
 				  </view>
 				</aloys-tab>
 			</view>
-			
-			
 		</scroll-view>
 		<view @tap="goTop" class="uni-link uni-center uni-common-mt lastView">
 			点击这里返回顶部
@@ -517,7 +515,7 @@ import graceChecker from "../../common/graceChecker.js"
 		 			console.log('chooseImage success, temp path is', res.tempFilePaths[0])
 		 			var imageSrc = res.tempFilePaths[0]
 		 			uni.uploadFile({
-		 				url: 'http://localhost:8888/upload/upload',
+		 				url: 'http://120.48.85.254:8888/upload/upload',
 		 				filePath: imageSrc,
 		 				fileType: 'image',
 		 				name: 'imgFile',

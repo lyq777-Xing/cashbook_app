@@ -3,7 +3,7 @@
 		<!-- 是登录页面 -->
 			<view class="avatarWrapper">
 				<view class="avater">
-					<image class="logo" src="../../static/Logo2.png" mode="widthFix"></image>
+					<image class="logo" src="https://cashbook-1310707740.cos.ap-shanghai.myqcloud.com/logo2.png" mode="widthFix"></image>
 				</view>
 			</view>
 			<!-- <view class="title">{{title}}</view> -->
@@ -15,13 +15,18 @@
 				<view class="inputWrapper">
 					<input class="input" v-model="form.password" type="password" placeholder="请输入密码">
 				</view>
+				<view class="inputWrapper">
+					<oneclick @success='captchaSuccess' @hide='captchaHide' :oneclickReload='captchaReload' :captchaShow='captchaShow' :options='options'></oneclick>
+				</view>
 				<view class="loginBtn">
 					<text class="btnValue"  @tap='submit'>登录</text>
 				</view>
 				<view class="zhuceBtn">
-					<text>注册</text>
+					<text @tap='zhuce()'>注册</text>
 				</view>
-				<!-- </uni-forms> -->
+				<view class="zhuceBtn">
+					<text @tap='forgetpwd()'>忘记密码</text>
+				</view>
 			</view>
 	</view>
 </template>
@@ -44,20 +49,61 @@
 					},
 					password:{
 						rule:/^[0-9a-zA-Z]{1,16}$/,
-						msg:"密码应该为1-16位"
+						msg:"密码不能为空"
 					}
-				}
+				},
+				options: {
+					appId: '40ba323954dfade3e33c299a192faa40', //控制台应用管理页面进行获取
+					style: 'oneclick'
+				},
+				captchaShow: false,
+				captchaReload: false,
+				flag:false,
 			}
 		},
 		onLoad(){
 			
 		},
 		methods:{
+			forgetpwd(){
+				uni.redirectTo({
+					url:'/pages/login/forget/forget'
+				})
+				console.log("fogetpwd...");
+			},
+			 // 验证码成功回调
+			  captchaSuccess: function (data) {
+			    console.log('验证码成功回调token:', data.detail)  //获取验证码token，用于后端验证码校验
+				this.flag = true
+			  },
+			
+			  // 验证码关闭回调
+			  captchaHide: function () {
+			    console.log('captcha_hide')
+			       // this.setData({
+			         captchaShow: false
+			    // })
+			  },
+			zhuce(){
+				uni.redirectTo({
+					url:'/pages/login/zhuce/zhuce'
+				})
+			},
 			//点击登录
 			submit(){
+				// captchaReload用来重置验证码
+				// this.setData({
+				  captchaReload: true
+				// })
 				if(!this.validate('username')) return;
 				if(!this.validate('password'))  return;
-				uni.showLoading({
+				if(!this.flag){
+					uni.showToast({
+						title:"请先验证"
+					});
+					return;
+				}
+				uni.showToast({
 					title:"登录中..."
 				});
 				this.$http.request({

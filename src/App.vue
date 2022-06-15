@@ -16,4 +16,5 @@
 	/*每个页面公共css */
 	@import './styles/iconfont.wxss';
 	@import './styles/base.wxss';
+	/* @import url("/components/gaoyia-parse/parse.css"); */
 </style>
