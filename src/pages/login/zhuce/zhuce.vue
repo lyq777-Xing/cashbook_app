@@ -72,6 +72,10 @@
 				
 			};
 		},
+		onPullDownRefresh() {
+			console.log("onPullDownRefresh");
+			uni.stopPullDownRefresh();
+		},
 		methods:{
 			bindnickName(e) {
 				this.data.userName = e.detail.value;

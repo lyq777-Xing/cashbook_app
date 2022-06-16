@@ -33,6 +33,10 @@ export default {
   created(){
 	
   },
+  onPullDownRefresh() {
+  	console.log("onPullDownRefresh");
+  	uni.stopPullDownRefresh();
+  },
   onLoad() {
   	this.getData()
   },

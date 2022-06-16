@@ -295,6 +295,10 @@ import graceChecker from "../../common/graceChecker.js"
 			 noneImg:'https://cashbook-1310707740.cos.ap-shanghai.myqcloud.com/b737bcfd-4faf-48dd-b8a9-bbae0cb706d2.gif',
 		 }
 	 },
+	 onPullDownRefresh() {
+	 	console.log("onPullDownRefresh");
+	 	uni.stopPullDownRefresh();
+	 },
 	 methods:{
 		 getId(){
 			 this.addData.userId =  uni.getStorageSync("id")

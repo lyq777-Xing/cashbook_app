@@ -109,6 +109,11 @@
 		created() {
 			this.getdata()
 		},
+		onPullDownRefresh() {
+			console.log("onPullDownRefresh");
+			this.getdata()
+			uni.stopPullDownRefresh();
+		},
 		methods: {
 			updpwd(){
 				if(!this.changepwdcode){

@@ -100,6 +100,64 @@
 			uniDatetimePicker,
 			dropdown
 		},
+		onPullDownRefresh() {
+			this.$http.request({
+			  url:"billlist/getall?userId="+uni.getStorageSync("id")
+			})
+			.then(res =>{
+				console.log(res);
+				if(res.data.meta.status === 200){
+					this.range = res.data.data
+					console.log(res.data.data);
+					for (var i = 0; i < this.range.length; i++) {
+						console.log(this.range[i]);
+						this.arr = this.range[i]
+						this.billList[i] = this.arr.text
+						if(this.data.billlistName === this.arr.text){
+							this.billListValue = i
+						}
+					}
+				}else{
+					uni.showToast({
+						// icon可以加载内置图标 有效值 none loading success
+						icpn: 'none',
+						title: '请退出重试'  ,
+						// image 则可以自定义图标 说实话 这个一般也不用改 除非 ui小姐姐给你做一个精美的
+						image: '../../static/icon/error.png',
+						duration: 5000
+					});  
+				}
+			})
+			
+			this.$http.request({
+			  url:"cat/getall"
+			})
+			.then(res =>{
+				console.log(res);
+				if(res.data.meta.status === 200){
+					console.log(res);
+					this.catList = res.data.data
+					for (var i = 0; i < this.catList.length; i++) {
+						this.catNameList[i] = this.catList[i].catName
+						if(this.data.catName === this.catList[i].catName){
+							this.catNameListValue = i
+						}
+					}
+					console.log(this.catList);
+					console.log(this.catNameList);
+					console.log(this.catNameListValue);
+					// this.ress = this.data
+				}else{
+					uni.showToast({
+						icpn: 'none',
+						title: '请重试'  ,
+						image: '/static/icon/error.png',
+						duration: 5000
+					});  
+				}
+			})
+			uni.stopPullDownRefresh();
+		},
 		created(){
 			this.$http.request({
 			  url:"billlist/getall?userId="+uni.getStorageSync("id")

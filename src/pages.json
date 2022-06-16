@@ -127,8 +127,8 @@
     "globalStyle": {
         "navigationBarTextStyle": "white",
         "navigationBarTitleText": "蓝鲸记账",
-        "navigationBarBackgroundColor": "#000"
-		// "enablePullDownRefresh": true
+        "navigationBarBackgroundColor": "#000",
+		"enablePullDownRefresh": true
     },
     "tabBar": {
         "color": "#8a8a8a",

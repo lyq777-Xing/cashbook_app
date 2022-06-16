@@ -49,6 +49,10 @@
 		},
 		created() {
 		},
+		onPullDownRefresh() {
+			console.log("onPullDownRefresh");
+			uni.stopPullDownRefresh();
+		},
 		methods:{
 			chooseImage: function() {
 				uni.chooseImage({

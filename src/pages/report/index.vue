@@ -44,6 +44,11 @@
 	created(){
 		this.getDate()
 	},
+	onPullDownRefresh() {
+		console.log("onPullDownRefresh");
+		this.getDate()
+		uni.stopPullDownRefresh();
+	},
 	 onReady() {
 		   //这里的 750 对应 css .charts 的 width
 		   this.cWidth = uni.upx2px(650);

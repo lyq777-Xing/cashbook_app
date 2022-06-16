@@ -55,6 +55,19 @@
 		   console.log(this.range);
 		 })
 	},
+	onPullDownRefresh() {
+		console.log("onPullDownRefresh");
+		this.$http.request({
+		  url:"billlist/getallb?userId="+uni.getStorageSync("id")
+		})
+		.then(res =>{
+		  console.log(res);
+		  this.range = res.data.data
+		  console.log(res.data.data);
+		  console.log(this.range);
+		})
+		uni.stopPullDownRefresh();
+	},
 	methods:{
 		upd(id){
 			uni.redirectTo({

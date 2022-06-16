@@ -65,6 +65,10 @@
 		onLoad(){
 			
 		},
+		onPullDownRefresh() {
+			console.log("onPullDownRefresh");
+			uni.stopPullDownRefresh();
+		},
 		methods:{
 			
 			 // 验证码成功回调

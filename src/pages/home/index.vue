@@ -90,6 +90,68 @@ import HmSmsListCard from '@/components/hm-sms-list-card/index.vue'
 		},
       }
     },
+	onPullDownRefresh() {
+		console.log("onPullDownRefresh");
+		this.$http.request({
+			  url:"billlist/getall?userId="+uni.getStorageSync("id")
+			})
+			.then(res =>{
+				console.log(res);
+				if(res.data.meta.status === 200){
+					this.range = res.data.data
+					console.log(res.data.data);
+					for (var i = 0; i < this.range.length; i++) {
+						console.log(this.range[i]);
+						this.arr = this.range[i]
+						this.list[i] = this.arr.text
+					}
+					this.$http.request({
+					  url:"bill/getkeeping?id="+ this.range[0].value
+					})
+					.then(res =>{
+						console.log(res);
+						if(res.data.meta.status === 200){
+							console.log(res);
+							this.card = res.data.data
+						}else{
+							uni.showToast({
+								icpn: 'none',
+								title: '请退出重试'  ,
+								image: '../../static/icon/error.png',
+								duration: 5000
+							});  
+						}
+					})
+					this.$http.request({
+					  url:"bill/get?userId="+ uni.getStorageSync("id") + "&" + "billlistId="+this.range[0].value
+					})
+					.then(res =>{
+						console.log(res);
+						if(res.data.meta.status === 200){
+							console.log(res);
+							this.bills = res.data.data
+						}else{
+							uni.showToast({
+								icpn: 'none',
+								title: '请退出重试'  ,
+								image: '../../static/icon/error.png',
+								duration: 5000
+							});  
+						}
+					})
+				}else{
+					uni.showToast({
+						// icon可以加载内置图标 有效值 none loading success
+						icpn: 'none',
+						title: '请退出重试'  ,
+						// image 则可以自定义图标 说实话 这个一般也不用改 除非 ui小姐姐给你做一个精美的
+						image: '../../static/icon/error.png',
+						duration: 5000
+					});  
+				}
+			})
+		uni.stopPullDownRefresh();
+	},
     methods: {
 	  onClick: function(e) {
 		console.log('onClick');

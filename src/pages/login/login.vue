@@ -64,6 +64,10 @@
 		onLoad(){
 			
 		},
+		onPullDownRefresh() {
+			console.log("onPullDownRefresh");
+			uni.stopPullDownRefresh();
+		},
 		methods:{
 			forgetpwd(){
 				uni.redirectTo({

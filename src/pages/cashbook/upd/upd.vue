@@ -131,6 +131,10 @@
 		},
 		created() {
 		},
+		onPullDownRefresh() {
+			console.log("onPullDownRefresh");
+			uni.stopPullDownRefresh();
+		},
 		methods:{
 			onLoad:function(option){
 				this.listId=option.id
