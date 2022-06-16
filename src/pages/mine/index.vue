@@ -24,22 +24,22 @@
 		   <text class="texttwo">记账天数 356   |   记账笔数 567</text>
 	   </view> -->
 	   <view class="final">
-		   <view class="daochuzhangdan">
-			   <text class="daochutext" @click="putreport()">导出账单 </text>
+		   <view class="daochuzhangdan"  @click="putreport()">
+			   <text class="daochutext">导出账单 </text>
 			   <text class="kuohao">></text>
 		   </view>
-		   <view class="daochuzhangdan">
-			   <text class="daochutext" @click="tuxiaochao()">用户反馈 </text>
+		   <view class="daochuzhangdan" @click="tuxiaochao()">
+			   <text class="daochutext" >用户反馈 </text>
 			   <text class="kuohao">></text>
 		   </view>
-		   <view class="daochuzhangdan">
-			   <text class="daochutext" @click="alipay()">成为会员 </text>
+		   <view class="daochuzhangdan" @click="alipay()">
+			   <text class="daochutext" >成为会员 </text>
 			   <text class="kuohao">></text>
 		   </view>
-		   <view class="daochuzhangdan">
+<!-- 		   <view class="daochuzhangdan">
 			   <text class="daochutext">关于我们 </text>
 			   <text class="kuohao">></text>
-		   </view>
+		   </view> -->
 		   <!-- <mp-html id="payDiv" class="payDiv" :content="conent" /> -->
 	   </view>
    </view>
@@ -105,23 +105,52 @@
 		   })
 	   },
 	   alipay(){
-		   function plusReady(){  
-			   // 在这里调用plus api  
-			   plus.runtime.openURL({
-				   url:'http://120.48.85.254:8888/alipay/pay',
-				   method:'POST',
-				   data:{
-						 subject:'充值会员',
-						 total_amount:'9.99',
-						 body: uni.getStorageSync("id")
-				   },
-			   })
-		   }  
-		   if(window.plus){  
-			   plusReady();  
-		   }else{  
-			   document.addEventListener('plusready',plusReady,false);  
-		   }
+		   uni.showModal({
+		   	title:'提示',
+		   	content: "小程序暂无该功能，请跳转至官网登录支付成为会员",
+		   	// confirmText: "确定",
+		   	// cancelText: "取消",
+		   	 // success: function (res) {
+		   		//   if (res.confirm) {
+		   		// 	  console.log('用户点击确定');
+		   		// 	  this.$http.request({
+		   		// 	    url:"billlist/del?id="+this.data.id,
+		   		// 	    // data:this.data,
+		   		// 	    method:'DELETE'
+		   		// 	  })
+		   		// 	  .then(res =>{
+		   		// 	    console.log(res);
+		   		// 	    // this.range = res.data.data
+		   		// 	    // console.log(res.data.data);
+		   		// 	    // console.log(this.range);
+		   		// 	  })
+		   		//   } else if (res.cancel) {
+		   		// 	  uni.showToast({
+		   		// 	  	title: '已取消删除',
+		   		// 	  	icon: 'success',
+		   		// 	  	duration: 1000
+		   		// 	  })
+		   		// 	  console.log('用户点击取消');
+		   		//   }
+		   	 //  }
+		   })
+		   // function plusReady(){  
+			  //  // 在这里调用plus api  
+			  //  plus.runtime.openURL({
+				 //   url:'http://120.48.85.254:8888/alipay/pay',
+				 //   method:'POST',
+				 //   data:{
+					// 	 subject:'充值会员',
+					// 	 total_amount:'9.99',
+					// 	 body: uni.getStorageSync("id")
+				 //   },
+			  //  })
+		   // }  
+		   // if(window.plus){  
+			  //  plusReady();  
+		   // }else{  
+			  //  document.addEventListener('plusready',plusReady,false);  
+		   // }
 		   
 		   // uni.redirectTo({
 		   // 	url:'/pages/mine/alipay/alipay'
@@ -222,18 +251,47 @@
 			  //  }
 		   // })
 		    // window.location.href  =  'http://120.48.85.254:8888/bill/getreportthree/1/200'
-			wx.downloadFile({
-				url:`http://120.48.85.254:8888/bill/getreportthree/1/200`,
-				method: "GET",
-				header: {Authorization:uni.getStorageSync('token')},
-				success (res) {
-				    // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-				    if (res.statusCode === 200) {
-				      wx.playVoice({
-				        filePath: res.tempFilePath
-				      })
-				    }
-				  }
+			// wx.downloadFile({
+			// 	url:`http://120.48.85.254:8888/bill/getreportthree/1/200`,
+			// 	method: "GET",
+			// 	header: {Authorization:uni.getStorageSync('token')},
+			// 	success (res) {
+			// 	    // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+			// 	    if (res.statusCode === 200) {
+			// 	      wx.playVoice({
+			// 	        filePath: res.tempFilePath
+			// 	      })
+			// 	    }
+			// 	  }
+			// })
+			uni.showModal({
+				title:'提示',
+				content: "小程序暂无该功能，请跳转至官网登录导出",
+				// confirmText: "确定",
+				// cancelText: "取消",
+				 // success: function (res) {
+					//   if (res.confirm) {
+					// 	  console.log('用户点击确定');
+					// 	  this.$http.request({
+					// 	    url:"billlist/del?id="+this.data.id,
+					// 	    // data:this.data,
+					// 	    method:'DELETE'
+					// 	  })
+					// 	  .then(res =>{
+					// 	    console.log(res);
+					// 	    // this.range = res.data.data
+					// 	    // console.log(res.data.data);
+					// 	    // console.log(this.range);
+					// 	  })
+					//   } else if (res.cancel) {
+					// 	  uni.showToast({
+					// 	  	title: '已取消删除',
+					// 	  	icon: 'success',
+					// 	  	duration: 1000
+					// 	  })
+					// 	  console.log('用户点击取消');
+					//   }
+				 //  }
 			})
 	   }
    }

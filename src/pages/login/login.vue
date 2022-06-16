@@ -103,7 +103,7 @@
 					});
 					return;
 				}
-				uni.showToast({
+				uni.showLoading({
 					title:"登录中..."
 				});
 				this.$http.request({

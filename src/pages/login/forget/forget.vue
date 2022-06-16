@@ -15,7 +15,7 @@
 				<view class="inputWrapper">
 					<input class="input" v-model="form.code" type="text" placeholder="请输入验证码">
 				</view>
-				<view class="inputWrapper">
+				<view class="">
 					<button size="mini" :disabled="btnDis" @click="sendcode()" class="getInfo bun">{{btnText}}</button>
 				</view>
 				<view class="inputWrapper">
@@ -105,11 +105,11 @@
 				})
 				.then(res =>{
 				  console.log(res);
-				  // if(res.statusCode===200){
-					 //  uni.showLoading({
-						// title: '重置成功...'  ,
-					 //  });
-				  // }
+				  if(res.data.meta.status===200){
+					  uni.showToast({
+						title: '重置成功...'  ,
+					  });
+				  }
 				});
 			},
 			//判断验证是否符合要求
