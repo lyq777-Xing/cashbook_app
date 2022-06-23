@@ -241,6 +241,27 @@ import HmSmsListCard from '@/components/hm-sms-list-card/index.vue'
 	  }
     },
     created(){
+		// this.$http.request({
+		//   url:"billlist/getdetail"
+		// })
+		// .then(res =>{
+		//   if(res.statusCode=== 200){
+		// 	  if(res.meta.status===200){
+		// 		  const det = JSON.parse(res.data.data)
+		// 		  console.log(det)
+		// 		  console.log("id..." + det.id);
+		// 		  uni.setStorageSync('id',det.id)
+		// 	  }else{
+		// 		  uni.showToast({
+		// 			title:"出错了，请退出重试"
+		// 		  });
+		// 	  }
+		//   }else{
+		// 	  uni.showToast({
+		// 		title:"出错了，请退出重试"
+		// 	  });
+		//   }
+		// })
 		this.$http.request({
 		  url:"billlist/getall?userId="+uni.getStorageSync("id")
 		})

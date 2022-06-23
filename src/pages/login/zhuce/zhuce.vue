@@ -159,13 +159,16 @@
 					if(res.data.meta.status === 200){
 						console.log(res);
 						this.addBilllist(res.data.data.id)
-						// this.data = JSON.parse(res.data.data)
-						// console.log(this.data);
-						
 					}else if(res.data.meta.status === 423){
 						uni.showToast({
 							icpn: 'none',
 							title: '该手机号已经被占用'  ,
+							duration: 5000
+						});  
+					}else if(res.data.meta.status === 424){
+						uni.showToast({
+							icpn: 'none',
+							title: '验证码错误'  ,
 							duration: 5000
 						});  
 					}else{
@@ -186,6 +189,14 @@
 					console.log(res);
 					if(res.data.meta.status === 200){
 						console.log(res);
+						uni.showToast({
+							icpn: 'none',
+							title: '注册成功'  ,
+							duration: 5000
+						});  
+						uni.redirectTo({
+							url:'/pages/login/zhuce/zhuce'
+						})
 					}else if(res.data.meta.status === 423){
 						uni.showToast({
 							icpn: 'none',
@@ -232,22 +243,30 @@
 				})
 				.then(res =>{
 					console.log(res);
-					if(res.data.meta.status === 200){
-						console.log(res);
-						// this.data = JSON.parse(res.data.data)
-						console.log(this.data);
-					}else if(res.data.meta.status === 423){
+					if(res.statusCode !== 200){
 						uni.showToast({
-							icpn: 'none',
-							title: '该手机号已经被占用'  ,
+							icpn: 'error',
+							title: '发送失败'  ,
 							duration: 5000
 						});  
 					}else{
-						uni.showToast({
-							icpn: 'none',
-							title: '请退出重试'  ,
-							duration: 5000
-						});  
+						if(res.data.meta.status === 200){
+							console.log(res);
+							// this.data = JSON.parse(res.data.data)
+							console.log(this.data);
+						}else if(res.data.meta.status === 423){
+							uni.showToast({
+								icpn: 'none',
+								title: '该手机号已经被占用'  ,
+								duration: 5000
+							});  
+						}else{
+							uni.showToast({
+								icpn: 'none',
+								title: '请退出重试'  ,
+								duration: 5000
+							});  
+						}
 					}
 				})
 				// 发送成功

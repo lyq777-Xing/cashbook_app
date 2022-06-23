@@ -135,13 +135,23 @@
 						// duration: 5000
 					  });
 					  this.$http.request({
-					    url:"billlist/getdetail"
+					    url:"bill/getdetail"
 					  })
 					  .then(res =>{
-						  if(res.statusCode===200){
-							  const det = JSON.parse(res.data.data)
-							  console.log(det)
-							  uni.setStorageSync('id',det.id)
+						  if(res.statusCode=== 200){
+								  const det = JSON.parse(res.data.data)
+								  console.log(det)
+								  console.log("id..." + det.id);
+								  uni.setStorageSync('id',det.id)
+								  if(det.id === null || det.id===''){
+									uni.showToast({
+										title:"登录失败"
+									});
+									}  
+						  }else{
+							  uni.showToast({
+								title:"登录失败"
+							  });
 						  }
 					  })
 					  uni.setStorageSync('token',"Bearer "+res.data.access_token)
